@@ -127,7 +127,7 @@ resource "azurerm_linux_virtual_machine" "VM1" {
   resource_group_name             = azurerm_resource_group.rg.name
   size                            = "Standard_B1s"
   admin_username                  = "adminuser"
-  admin_password                  = "password_F123"
+  admin_password                  = var.admin_password
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.VM1_nic.id,
@@ -159,7 +159,7 @@ resource "azurerm_linux_virtual_machine" "VM1" {
     connection {
       type     = "ssh"
       user     = "adminuser"
-      password = "password_F123"
+      password = var.admin_password
       host     = azurerm_public_ip.VM1_public_ip.ip_address
       port     = 22
     }
